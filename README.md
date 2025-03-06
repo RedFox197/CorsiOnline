@@ -15,3 +15,6 @@ data
 tipo (scritto o orale)
 descrizione
 punteggio massimo
+
+figma
+https://www.figma.com/design/XDNoUXLskiRFQ7Bs1D78Sw/Untitled?node-id=1-10&t=cbjkx39PgOQHgUVO-0

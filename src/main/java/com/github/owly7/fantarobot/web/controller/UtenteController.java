@@ -12,34 +12,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.github.owly7.fantarobot.database.entity.Docente;
-import com.github.owly7.fantarobot.database.service.DocenteService;
+
+import com.github.owly7.fantarobot.database.entity.Utente;
+import com.github.owly7.fantarobot.database.service.UtenteService;
 
 @RestController
-@RequestMapping("/docente")
-public class DocenteController {
+@RequestMapping("/utente")
+public class UtenteController {
 
     @Autowired
-    private DocenteService docenteService;
+    private UtenteService utenteService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Docente>> findAllDocente() {
-        return ResponseEntity.ok(docenteService.findAll());
+    public ResponseEntity<List<Utente>> findAllUtente() {
+        return ResponseEntity.ok(utenteService.findAll());
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Docente> save(@RequestBody Docente entity) {
-        return ResponseEntity.ok(docenteService.save(entity));
+    public ResponseEntity<Utente> save(@RequestBody Utente entity) {
+        return ResponseEntity.ok(utenteService.save(entity));
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Docente> findById(@RequestParam long id) {
-        return ResponseEntity.ok(docenteService.findById(id).get());
+    public ResponseEntity<Utente> findById(@RequestParam long id) {
+        return ResponseEntity.ok(utenteService.findById(id).get());
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        docenteService.deleteById(id);
+        utenteService.deleteById(id);
     }
 
 }

@@ -1,34 +1,52 @@
 package com.github.owly7.fantarobot.database.entity;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import com.github.owly7.fantarobot.database.entity.Classe;
-// da dover capire quando esiste la classe
 
 @Entity
-public class Studente {
+public class Utente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(length = 64)
     private String nome;
+
+    @Column(length = 64)
     private String cognome;
+
+    @Column(length = 128)
     private String email;
-    private int tel;
+
+    @Column(length = 20)
+    private String tel;
+
+    @ManyToMany(mappedBy = "docenti")
+    @JsonBackReference
+    private List<Corso> corsi;
+
+    @Enumerated(EnumType.STRING)
+    private Ruolo ruolo;
+
     private LocalDate dataIscrizione;
-    private String matricola;
 
-    @ManyToMany
-    private List<Corso> corsi = new ArrayList<>(); // da creare ancora l'entità
+    public Utente() {
+    }
 
-    @ManyToOne
-    private Classe classe; // da creare ancora l'entità
-
+    public Long getId() {
+        return id;
+    }
 
     public List<Corso> getCorsi() {
         return corsi;
@@ -38,22 +56,9 @@ public class Studente {
         this.corsi = corsi;
     }
 
-    public Classe getClasse() {
-        return classe;
-    }
-
-    public void setClasse(Classe classe) {
-        this.classe = classe;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getNome() {
         return nome;
@@ -70,25 +75,31 @@ public class Studente {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-    
+
     public String getEmail() {
         return email;
     }
 
-    
     public void setEmail(String email) {
         this.email = email;
     }
 
-
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
-    
+
+    public Ruolo getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(Ruolo ruolo) {
+        this.ruolo = ruolo;
+    }
+
     public LocalDate getDataIscrizione() {
         return dataIscrizione;
     }
@@ -97,28 +108,18 @@ public class Studente {
         this.dataIscrizione = dataIscrizione;
     }
 
-    public String getMatricola() {
-        return matricola;
-    }
-
-    public void setMatricola(String matricola) {
-        this.matricola = matricola;
-    }
-
     @Override
     public String toString() {
-        return "Studente [\n"
+        return "Docente [\n"
                 + "  id=" + id + ",\n"
                 + "  nome=" + nome + ",\n"
                 + "  cognome=" + cognome + ",\n"
                 + "  tel=" + tel + ",\n"
                 + "  email=" + email + "\n"
-                + "  DataIscrizione=" + email + "\n"
-                + "  matricola=" + email + "\n"
                 + "]";
     }
 
+    public enum Ruolo {
+        STUDENTE, DOCENTE
+    }
 }
-
-
-
