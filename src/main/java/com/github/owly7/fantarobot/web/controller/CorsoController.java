@@ -7,7 +7,6 @@ import com.github.owly7.fantarobot.database.entity.Corso;
 import com.github.owly7.fantarobot.database.service.CorsoService;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
