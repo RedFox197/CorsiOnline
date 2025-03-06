@@ -1,4 +1,4 @@
-package com.github.owly7.fantarobot.web.controller;
+package com.github.owly7.corsionline.web.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.owly7.fantarobot.database.entity.Utente;
-import com.github.owly7.fantarobot.database.service.UtenteService;
+import com.github.owly7.corsionline.database.entity.Utente;
+import com.github.owly7.corsionline.database.service.UtenteService;
 
 @RestController
 @RequestMapping("/utente")

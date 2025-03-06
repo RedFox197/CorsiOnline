@@ -1,4 +1,4 @@
-package com.github.owly7.fantarobot.database.service;
+package com.github.owly7.corsionline.database.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,8 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.owly7.fantarobot.database.entity.Utente;
-import com.github.owly7.fantarobot.database.repository.UtenteRepo;
+import com.github.owly7.corsionline.database.entity.Utente;
+import com.github.owly7.corsionline.database.repository.UtenteRepo;
 
 import jakarta.transaction.Transactional;
 

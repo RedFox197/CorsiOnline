@@ -1,10 +1,10 @@
-package com.github.owly7.fantarobot.web.controller;
+package com.github.owly7.corsionline.web.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.owly7.fantarobot.database.entity.Corso;
-import com.github.owly7.fantarobot.database.service.CorsoService;
+import com.github.owly7.corsionline.database.entity.Corso;
+import com.github.owly7.corsionline.database.service.CorsoService;
 
 import java.util.List;
 

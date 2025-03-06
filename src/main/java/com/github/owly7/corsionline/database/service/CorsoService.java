@@ -1,4 +1,4 @@
-package com.github.owly7.fantarobot.database.service;
+package com.github.owly7.corsionline.database.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.owly7.fantarobot.database.entity.Corso;
-import com.github.owly7.fantarobot.database.repository.CorsoRepo;
+import com.github.owly7.corsionline.database.entity.Corso;
+import com.github.owly7.corsionline.database.repository.CorsoRepo;
 
 @Service
 public class CorsoService {

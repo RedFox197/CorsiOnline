@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.github.owly7</groupId>
-	<artifactId>fantarobot</artifactId>
+	<artifactId>corsionline</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>fantarobot</name>
+	<name>corsionline</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

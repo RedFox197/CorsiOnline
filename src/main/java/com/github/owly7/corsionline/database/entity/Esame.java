@@ -1,4 +1,4 @@
-package com.github.owly7.fantarobot.database.entity;
+package com.github.owly7.corsionline.database.entity;
 
 import java.time.LocalDate;
 import java.util.List;

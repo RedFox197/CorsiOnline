@@ -1,4 +1,4 @@
-package com.github.owly7.fantarobot.database.service;
+package com.github.owly7.corsionline.database.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.owly7.fantarobot.database.entity.Esame;
-import com.github.owly7.fantarobot.database.repository.EsameRepo;
+import com.github.owly7.corsionline.database.entity.Esame;
+import com.github.owly7.corsionline.database.repository.EsameRepo;
 
 @Service
 public class EsameService {
@@ -27,7 +27,7 @@ public class EsameService {
         return esameRepo.findAll();
     }
 
-    public Optional<Esame> findById (Long id) {
+    public Optional<Esame> findById(Long id) {
         return esameRepo.findById(id);
     }
 
