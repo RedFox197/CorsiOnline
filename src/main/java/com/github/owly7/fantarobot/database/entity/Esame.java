@@ -1,12 +1,16 @@
 package com.github.owly7.fantarobot.database.entity;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Esame {
@@ -23,6 +27,11 @@ public class Esame {
 
     private int punteggioMax;
     private LocalDate data;
+
+    @ManyToMany
+    @JsonBackReference
+    private List<Classe> classi;
+
 
     public Long getId() {
         return id;
@@ -54,7 +63,7 @@ public class Esame {
     public void setData(LocalDate data) {
         this.data = data;
     }
-    
+
     @Override
     public String toString() {
         return "Esame [\nid=" + id + 

@@ -1,6 +1,7 @@
 package com.github.owly7.fantarobot.database.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class EsameService {
     @Autowired
     private EsameRepo esameRepo;
 
-    public void save(Esame esame) {
-        esameRepo.save(esame);
+    public Esame save(Esame entity) {
+        return esameRepo.save(entity);
     }
 
     public void delete(Esame esame) {
@@ -26,9 +27,12 @@ public class EsameService {
         return esameRepo.findAll();
     }
 
-    public Esame findById (Long id) {
-        return esameRepo.findById(id).orElse(null);
+    public Optional<Esame> findById (Long id) {
+        return esameRepo.findById(id);
     }
 
+    public void deleteById(Long id) {
+        esameRepo.deleteById(id);
+    }
 
 }
