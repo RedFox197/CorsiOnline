@@ -4,18 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.fantarobot.database.entity.Esame;
 import com.github.owly7.fantarobot.database.service.EsameService;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -40,6 +39,11 @@ public class EsameController {
     public ResponseEntity<Esame> findById(@RequestParam long id) {
         return ResponseEntity.ok(esameService.findById(id).get());
     }
+    @GetMapping("/studente/{studenteId}")
+    public ResponseEntity<List<Esame>> findEsamiByStudente(@PathVariable Long studenteId) {
+    List<Esame> esami = esameService.getEsamiByStudente(studenteId);
+    return ResponseEntity.ok(esami);
+}
     
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {

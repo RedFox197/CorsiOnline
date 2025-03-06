@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -35,11 +36,14 @@ public class Utente {
     @ManyToMany(mappedBy = "utenti")
     @JsonBackReference
     private List<Corso> corsi;
-
+    
     @Enumerated(EnumType.STRING)
     private Ruolo ruolo;
 
     private LocalDate dataIscrizione;
+
+    @ManyToMany(mappedBy = "studenti")
+    private List<Esame> esamiSostenuti;
 
     public Utente() {
     }
@@ -108,9 +112,18 @@ public class Utente {
         this.dataIscrizione = dataIscrizione;
     }
 
+    public List<Esame> getEsamiSostenuti() {
+        return esamiSostenuti;
+    }
+
+    public void setEsamiSostenuti(List<Esame> esamiSostenuti) {
+        this.esamiSostenuti = esamiSostenuti;
+    }
+    
+
     @Override
     public String toString() {
-        return "Docente [\n"
+        return "Utente [\n"
                 + "  id=" + id + ",\n"
                 + "  nome=" + nome + ",\n"
                 + "  cognome=" + cognome + ",\n"
@@ -122,4 +135,6 @@ public class Utente {
     public enum Ruolo {
         STUDENTE, DOCENTE
     }
+
 }
+

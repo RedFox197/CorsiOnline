@@ -35,4 +35,8 @@ public class EsameService {
         esameRepo.deleteById(id);
     }
 
+    public List<Esame> getEsamiByStudente(Long studenteId) {
+        return esameRepo.findByStudenti_Id(studenteId);
+    }
+
 }

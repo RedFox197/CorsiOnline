@@ -31,6 +31,16 @@ public class Esame {
     @ManyToMany
     @JsonBackReference
     private List<Classe> classi;
+    @ManyToMany
+    private List<Utente> studenti;
+
+    public List<Utente> getStudenti() {
+        return studenti;
+    }
+
+    public void setStudenti(List<Utente> studenti) {
+        this.studenti = studenti;
+    }
 
 
     public Long getId() {
@@ -73,7 +83,5 @@ public class Esame {
                 ", \ndata=" + data + "]";
     }
 
-    
-
-    
 }
+
