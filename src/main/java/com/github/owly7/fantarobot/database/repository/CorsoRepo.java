@@ -1,5 +1,11 @@
 package com.github.owly7.fantarobot.database.repository;
 
-public interface CorsoRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.github.owly7.fantarobot.database.entity.Corso;
+
+@Repository
+public interface CorsoRepo extends JpaRepository<Corso, Long> {
 
 }

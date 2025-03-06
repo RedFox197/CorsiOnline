@@ -1,5 +1,48 @@
 package com.github.owly7.fantarobot.web.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.github.owly7.fantarobot.database.entity.Corso;
+import com.github.owly7.fantarobot.database.service.CorsoService;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@RestController
+@RequestMapping("/corso")
 public class CorsoController {
+
+    @Autowired
+    private CorsoService corsoService;
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Corso>> findAllCorso() {
+        return ResponseEntity.ok(corsoService.findAll());
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Corso> save(@RequestBody Corso entity) {
+        return ResponseEntity.ok(corsoService.save(entity));
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<Corso> findById(@RequestParam long id) {
+        return ResponseEntity.ok(corsoService.findById(id).get());
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id) {
+        corsoService.deleteById(id);
+    }
 
 }
