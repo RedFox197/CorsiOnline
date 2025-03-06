@@ -29,12 +29,12 @@ public class StudenteController {
 
     @PostMapping("/save")
     public ResponseEntity<Studente> save(@RequestBody Studente entity) {
-        return ResponseEntity.ok(StudenteService.save(entity));
+        return ResponseEntity.ok(studenteService.save(entity));
     }
 
     @GetMapping("/get")
     public ResponseEntity<Studente> findById(@RequestParam long id) {
-        return ResponseEntity.ok(studenteService.findById(id).get());
+        return ResponseEntity.ok(studenteService.findById(id));
     }
     @GetMapping("/corso/{corsoId}")
     public ResponseEntity<List<Studente>> getStudentiByCorso(@PathVariable Long corsoId) {
