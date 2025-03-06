@@ -32,7 +32,7 @@ public class Corso {
 
     @ManyToMany
     @JsonBackReference
-    private List<Utente> docenti = new ArrayList<>();
+    private List<Utente> utenti = new ArrayList<>();
 
     public Corso() {
 
@@ -86,10 +86,10 @@ public class Corso {
     }
 
     public List<Utente> getDocenti() {
-        return docenti;
+        return utenti;
     }
 
     public void setDocenti(List<Utente> docenti) {
-        this.docenti = docenti;
+        this.utenti = docenti;
     }
 }
