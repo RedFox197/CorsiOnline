@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-//import com.github.owly7.fantarobot.database.entity.Classe;
+import com.github.owly7.fantarobot.database.entity.Classe;
 // da dover capire quando esiste la classe
 
 @Entity
@@ -103,6 +103,19 @@ public class Studente {
 
     public void setMatricola(String matricola) {
         this.matricola = matricola;
+    }
+
+    @Override
+    public String toString() {
+        return "Studente [\n"
+                + "  id=" + id + ",\n"
+                + "  nome=" + nome + ",\n"
+                + "  cognome=" + cognome + ",\n"
+                + "  tel=" + tel + ",\n"
+                + "  email=" + email + "\n"
+                + "  DataIscrizione=" + email + "\n"
+                + "  matricola=" + email + "\n"
+                + "]";
     }
 
 }

@@ -16,15 +16,19 @@ public class StudenteService {
     @Autowired
     private StudenteRepo studenteRepo;
 
+    public void deleteById(Long id) {
+        studenteRepo.deleteById(id);
+    }
+
     public List<Studente> findAll() {
 
         return studenteRepo.findAll();
     }
-    // aggiungo uno studente
-    public void save(Studente studente) {
 
-        studenteRepo.save(studente);
+    public Studente save(Studente entity) {
+        return studenteRepo.save(entity);
     }
+
     // cerchiamo gli studenti per i vari corsi
     @Transactional
     public List<Studente> findAllByCorso(Long corsoId) {
