@@ -1,10 +1,16 @@
 package com.github.owly7.fantarobot.database.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Corso {
@@ -17,17 +23,42 @@ public class Corso {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
-    // private String programma; TODO capire cos'è
-    // private String materialeDidattico; TODO forse tabella a parte del materiale
-    // dove fornisce i vari file se necessario
+    @Column(columnDefinition = "TEXT")
+    private String programma;
+
+    // TODO tabella a parte
+    @Column(columnDefinition = "TEXT")
+    private String materialeDidattico;
+
+    @ManyToMany
+    @JsonBackReference
+    private List<Docente> docenti = new ArrayList<>();
 
     public Corso() {
 
     }
 
-    public Corso(String titolo, String descrizione) {
+    public Corso(String titolo, String descrizione, String programma, String materialeDidattico) {
         this.titolo = titolo;
         this.descrizione = descrizione;
+        this.programma = programma;
+        this.materialeDidattico = materialeDidattico;
+    }
+
+    public String getProgramma() {
+        return programma;
+    }
+
+    public void setProgramma(String programma) {
+        this.programma = programma;
+    }
+
+    public String getMaterialeDidattico() {
+        return materialeDidattico;
+    }
+
+    public void setMaterialeDidattico(String materialeDidattico) {
+        this.materialeDidattico = materialeDidattico;
     }
 
     public long getId() {
@@ -54,4 +85,11 @@ public class Corso {
         this.descrizione = descrizione;
     }
 
+    public List<Docente> getDocenti() {
+        return docenti;
+    }
+
+    public void setDocenti(List<Docente> docenti) {
+        this.docenti = docenti;
+    }
 }

@@ -29,7 +29,7 @@ public class Docente {
     @Column(length = 20)
     private String tel;
 
-    @ManyToMany(mappedBy = "docente")
+    @ManyToMany(mappedBy = "docenti")
     @JsonBackReference
     private List<Corso> corsi;
 
