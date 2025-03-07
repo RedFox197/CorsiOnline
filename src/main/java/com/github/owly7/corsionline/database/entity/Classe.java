@@ -45,4 +45,85 @@ public class Classe {
 
     @OneToMany(mappedBy = "classe")
     private List<Esame> esami;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public LocalDate getDataInizio() {
+        return dataInizio;
+    }
+
+    public void setDataInizio(LocalDate dataInizio) {
+        this.dataInizio = dataInizio;
+    }
+
+    public LocalDate getDataFine() {
+        return dataFine;
+    }
+
+    public void setDataFine(LocalDate dataFine) {
+        this.dataFine = dataFine;
+    }
+
+    public Corso getCorso() {
+        return corso;
+    }
+
+    public void setCorso(Corso corso) {
+        this.corso = corso;
+    }
+
+    public Utente getDocente() {
+        return docente;
+    }
+
+    public void setDocente(Utente docente) {
+        this.docente = docente;
+    }
+
+    public List<Lezione> getLezioni() {
+        return lezioni;
+    }
+
+    public void setLezioni(List<Lezione> lezioni) {
+        this.lezioni = lezioni;
+    }
+
+    public List<Utente> getStudenti() {
+        return studenti;
+    }
+
+    public void setStudenti(List<Utente> studenti) {
+        this.studenti = studenti;
+    }
+
+    public List<Evento> getEventi() {
+        return eventi;
+    }
+
+    public void setEventi(List<Evento> eventi) {
+        this.eventi = eventi;
+    }
+
+    public List<Esame> getEsami() {
+        return esami;
+    }
+
+    public void setEsami(List<Esame> esami) {
+        this.esami = esami;
+    }
+
 }

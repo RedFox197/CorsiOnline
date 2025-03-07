@@ -23,4 +23,37 @@ public class Corso {
 
     @OneToMany(mappedBy = "corso")
     private List<Classe> classi;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public List<Classe> getClassi() {
+        return classi;
+    }
+
+    public void setClassi(List<Classe> classi) {
+        this.classi = classi;
+    }
+
 }

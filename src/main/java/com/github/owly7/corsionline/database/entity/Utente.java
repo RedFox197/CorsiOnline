@@ -37,6 +37,62 @@ public class Utente {
     @ManyToMany(mappedBy = "studenti")
     private List<Esame> esami;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public Ruolo getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(Ruolo ruolo) {
+        this.ruolo = ruolo;
+    }
+
+    public List<Classe> getClassi() {
+        return classi;
+    }
+
+    public void setClassi(List<Classe> classi) {
+        this.classi = classi;
+    }
+
+    public List<Esame> getEsami() {
+        return esami;
+    }
+
+    public void setEsami(List<Esame> esami) {
+        this.esami = esami;
+    }
+
     public enum Ruolo {
         STUDENTE,
         DOCENTE,
