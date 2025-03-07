@@ -26,7 +26,7 @@ public class Lezione {
     @ManyToOne
     private Classe classe;
 
-    @ManyToMany(mappedBy = "lezione")
+    @ManyToMany(mappedBy = "lezioni")
     private List<Materiale> materiali;
 
     public Long getId() {

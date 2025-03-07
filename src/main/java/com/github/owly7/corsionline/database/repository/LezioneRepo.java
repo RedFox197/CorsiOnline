@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.github.owly7.corsionline.database.entity.Lezione;
 
 @Repository
-public interface LezioneRepo extends JpaRepository<Lezione, Long>{
+public interface LezioneRepo extends JpaRepository<Lezione, Long> {
 
 }

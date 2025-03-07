@@ -1,5 +1,7 @@
 package com.github.owly7.corsionline.database.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public class Materiale {
     private String url;
 
     @ManyToMany
-    private Lezione lezione;
+    private List<Lezione> lezioni;
 
     public Long getId() {
         return id;
@@ -57,12 +59,12 @@ public class Materiale {
         this.url = url;
     }
 
-    public Lezione getLezione() {
-        return lezione;
+    public List<Lezione> getLezioni() {
+        return lezioni;
     }
 
-    public void setLezione(Lezione lezione) {
-        this.lezione = lezione;
+    public void setLezioni(List<Lezione> lezioni) {
+        this.lezioni = lezioni;
     }
 
 }

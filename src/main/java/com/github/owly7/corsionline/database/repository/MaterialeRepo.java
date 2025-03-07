@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.github.owly7.corsionline.database.entity.Materiale;
 
 @Repository
-public interface MaterialeRepo extends JpaRepository<Materiale, Long>{
+public interface MaterialeRepo extends JpaRepository<Materiale, Long> {
 
 }

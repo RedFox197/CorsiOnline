@@ -38,12 +38,6 @@ public class EsameController {
         return ResponseEntity.ok(esameService.findById(id).get());
     }
 
-    @GetMapping("/studente/{studenteId}")
-    public ResponseEntity<List<Esame>> findEsamiByStudente(@PathVariable Long studenteId) {
-        List<Esame> esami = esameService.getEsamiByStudente(studenteId);
-        return ResponseEntity.ok(esami);
-    }
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
         esameService.deleteById(id);

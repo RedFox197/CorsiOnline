@@ -19,10 +19,6 @@ public class EsameService {
         return esameRepo.save(entity);
     }
 
-    public void delete(Esame esame) {
-        esameRepo.delete(esame);
-    }
-
     public List<Esame> findAll() {
         return esameRepo.findAll();
     }
