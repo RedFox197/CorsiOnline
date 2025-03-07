@@ -26,10 +26,6 @@ public class CorsoService {
         return corsoRepo.findById(id);
     }
 
-    public void delete(Corso entity) {
-        corsoRepo.delete(entity);
-    }
-
     public void deleteById(Long id) {
         corsoRepo.deleteById(id);
     }
