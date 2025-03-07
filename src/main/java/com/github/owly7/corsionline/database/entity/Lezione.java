@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,10 +24,10 @@ public class Lezione {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Classe classe;
 
-    @ManyToMany(mappedBy = "lezioni")
+    @ManyToMany(mappedBy = "lezioni", fetch = FetchType.EAGER)
     private List<Materiale> materiali;
 
     public Long getId() {
