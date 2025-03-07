@@ -13,6 +13,8 @@ import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Classe {
 
@@ -37,6 +39,7 @@ public class Classe {
     @OneToMany(mappedBy = "classe")
     private List<Lezione> lezioni;
 
+    @JsonBackReference
     @ManyToMany
     private List<Utente> studenti;
 

@@ -3,6 +3,8 @@ package com.github.owly7.corsionline.database.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,8 @@ public class Esame {
 
     @ManyToOne
     private Classe classe;
+
+    @JsonBackReference
     @ManyToMany
     private List<Utente> studenti;
 

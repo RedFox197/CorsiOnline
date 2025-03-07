@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.owly7.corsionline.database.entity.Materiale;
 import com.github.owly7.corsionline.database.service.MaterialeService;
 
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/materiale")
 public class MaterialeController {

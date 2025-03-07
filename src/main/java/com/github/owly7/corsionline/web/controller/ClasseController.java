@@ -1,7 +1,6 @@
 package com.github.owly7.corsionline.web.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/classe")
 public class ClasseController {

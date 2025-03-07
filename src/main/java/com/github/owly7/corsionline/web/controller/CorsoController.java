@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/corso")
 public class CorsoController {

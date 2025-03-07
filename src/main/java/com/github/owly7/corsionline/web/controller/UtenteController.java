@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.owly7.corsionline.database.entity.Utente;
 import com.github.owly7.corsionline.database.service.UtenteService;
 
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/utente")
 public class UtenteController {
