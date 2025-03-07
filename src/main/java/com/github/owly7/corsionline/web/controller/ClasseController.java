@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.owly7.corsionline.database.entity.Classe;
 import com.github.owly7.corsionline.database.service.ClasseService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/classe")
 public class ClasseController {
+    @Autowired
     private ClasseService classeService;
 
     @PostMapping("/save")
