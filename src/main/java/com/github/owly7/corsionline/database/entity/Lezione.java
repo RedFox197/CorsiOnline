@@ -2,6 +2,9 @@ package com.github.owly7.corsionline.database.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.github.owly7.corsionline.web.Views;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
+@JsonView(Views.Base.class)
 @Entity
 public class Lezione {
 
@@ -24,9 +28,12 @@ public class Lezione {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
+    @JsonView(Views.Lezione.Completa.class)
     @ManyToOne(fetch = FetchType.EAGER)
     private Classe classe;
 
+    //TODO mettere il mapped by in materiale FORSE
+    @JsonView(Views.Lezione.Completa.class)
     @ManyToMany(mappedBy = "lezioni", fetch = FetchType.EAGER)
     private List<Materiale> materiali;
 

@@ -10,6 +10,11 @@ import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.github.owly7.corsionline.web.Views;
+
+
+@JsonView(Views.Base.class)
 @Entity
 public class Corso {
     @Id
@@ -22,6 +27,7 @@ public class Corso {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
+    @JsonView(Views.Corso.Completa.class)
     @OneToMany(mappedBy = "corso", fetch = FetchType.EAGER)
     private List<Classe> classi;
 

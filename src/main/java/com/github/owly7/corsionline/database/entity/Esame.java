@@ -3,7 +3,8 @@ package com.github.owly7.corsionline.database.entity;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.github.owly7.corsionline.web.Views;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
+@JsonView(Views.Base.class)
 @Entity
 public class Esame {
 
@@ -30,10 +32,11 @@ public class Esame {
     private int punteggio;
     private LocalDate data;
 
+    @JsonView(Views.Esame.Completa.class)
     @ManyToOne(fetch = FetchType.EAGER)
     private Classe classe;
 
-    @JsonBackReference
+    @JsonView(Views.Esame.Completa.class)
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Utente> studenti;
 

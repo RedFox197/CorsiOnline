@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.github.owly7.corsionline.database.entity.Utente;
 import com.github.owly7.corsionline.database.service.UtenteService;
+import com.github.owly7.corsionline.web.Views;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -25,6 +27,7 @@ public class UtenteController {
     @Autowired
     private UtenteService utenteService;
 
+    @JsonView(Views.Utente.Completa.class)
     @GetMapping("/all")
     public ResponseEntity<List<Utente>> findAllUtente() {
         return ResponseEntity.ok(utenteService.findAll());

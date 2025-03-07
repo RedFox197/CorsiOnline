@@ -2,6 +2,9 @@ package com.github.owly7.corsionline.database.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.github.owly7.corsionline.web.Views;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
+@JsonView(Views.Base.class)
 @Entity
 public class Evento {
     @Id
@@ -25,6 +29,7 @@ public class Evento {
     @Column(nullable = false)
     private LocalDateTime data;
 
+    @JsonView(Views.Evento.Completa.class)
     @ManyToOne(fetch = FetchType.EAGER)
     private Classe classe;
 

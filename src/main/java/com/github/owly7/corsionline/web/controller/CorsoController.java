@@ -3,8 +3,10 @@ package com.github.owly7.corsionline.web.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.github.owly7.corsionline.database.entity.Corso;
 import com.github.owly7.corsionline.database.service.CorsoService;
+import com.github.owly7.corsionline.web.Views;
 
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class CorsoController {
     @Autowired
     private CorsoService corsoService;
 
+    @JsonView(Views.Corso.Completa.class)
     @GetMapping("/all")
     public ResponseEntity<List<Corso>> findAllCorso() {
         return ResponseEntity.ok(corsoService.findAll());

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.github.owly7.corsionline.database.entity.Evento;
 import com.github.owly7.corsionline.database.service.EventoService;
+import com.github.owly7.corsionline.web.Views;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -28,6 +30,7 @@ public class EventoController {
         return eventoService.save(entity);
     }
 
+    @JsonView(Views.Evento.Completa.class)
     @GetMapping("/all")
     public List<Evento> findAll() {
         return eventoService.findAll();

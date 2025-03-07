@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.github.owly7.corsionline.database.entity.Classe;
 import com.github.owly7.corsionline.database.service.ClasseService;
+import com.github.owly7.corsionline.web.Views;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,6 +31,7 @@ public class ClasseController {
         return classeService.save(entity);
     }
 
+    @JsonView(Views.Classe.Completa.class)
     @GetMapping("/all")
     public List<Classe> findAll() {
         return classeService.findAll();

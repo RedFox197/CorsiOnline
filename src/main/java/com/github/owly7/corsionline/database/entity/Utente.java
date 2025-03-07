@@ -12,6 +12,10 @@ import jakarta.persistence.ManyToMany;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.github.owly7.corsionline.web.Views;
+
+@JsonView(Views.Base.class)
 @Entity
 public class Utente {
 
@@ -32,9 +36,11 @@ public class Utente {
     @Column(nullable = false)
     private Ruolo ruolo;
 
+    @JsonView(Views.Utente.Completa.class)
     @ManyToMany(mappedBy = "studenti", fetch = FetchType.EAGER)
     private List<Classe> classi;
 
+    @JsonView(Views.Utente.Completa.class)
     @ManyToMany(mappedBy = "studenti", fetch = FetchType.EAGER)
     private List<Esame> esami;
 

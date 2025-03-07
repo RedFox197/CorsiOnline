@@ -14,8 +14,10 @@ import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.github.owly7.corsionline.web.Views;
 
+@JsonView(Views.Base.class)
 @Entity
 public class Classe {
 
@@ -31,22 +33,28 @@ public class Classe {
 
     private LocalDate dataFine;
 
+    @JsonView(Views.Classe.Completa.class)
     @ManyToOne(fetch = FetchType.EAGER)
     private Corso corso;
 
+    @JsonView(Views.Classe.Completa.class)
     @ManyToOne(fetch = FetchType.EAGER)
     private Utente docente;
 
+    @JsonView(Views.Classe.Completa.class)
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Lezione> lezioni;
 
-    @JsonBackReference
+    @JsonView(Views.Classe.Completa.class)
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Utente> studenti;
 
+    @JsonView(Views.Classe.Completa.class)
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Evento> eventi;
 
+    //TODO metterlo nell'utente togliendolo da qua (FORSE)
+    @JsonView(Views.Classe.Completa.class)
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Esame> esami;
 
