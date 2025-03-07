@@ -11,7 +11,6 @@ import java.util.List;
 
 @Entity
 public class Corso {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

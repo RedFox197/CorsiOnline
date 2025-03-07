@@ -20,12 +20,6 @@ public class Classe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Corso corso;
-
-    @ManyToOne
-    private Utente docente;
-
     @Column(nullable = false)
     private String nome;
 
@@ -33,6 +27,12 @@ public class Classe {
     private LocalDate dataInizio;
 
     private LocalDate dataFine;
+
+    @ManyToOne
+    private Corso corso;
+
+    @ManyToOne
+    private Utente docente;
 
     @OneToMany(mappedBy = "classe")
     private List<Lezione> lezioni;
