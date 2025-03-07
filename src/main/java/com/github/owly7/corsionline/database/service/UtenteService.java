@@ -38,14 +38,4 @@ public class UtenteService {
         utenteRepo.deleteById(id);
     }
 
-    @Transactional
-    public List<Utente> findAllWithCorso() {
-        List<Utente> utenti = utenteRepo.findAll();
-        utenti.forEach(t -> {
-            Hibernate.initialize(t.getCorsi());
-        });
-        return utenti;
-
-    }
-
 }
