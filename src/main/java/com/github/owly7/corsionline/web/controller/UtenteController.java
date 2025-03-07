@@ -33,11 +33,13 @@ public class UtenteController {
         return ResponseEntity.ok(utenteService.findAll());
     }
 
+    @JsonView(Views.Utente.Completa.class)
     @PostMapping("/save")
     public ResponseEntity<Utente> save(@RequestBody Utente entity) {
         return ResponseEntity.ok(utenteService.save(entity));
     }
 
+    @JsonView(Views.Utente.Completa.class)
     @GetMapping("/get")
     public ResponseEntity<Utente> findById(@RequestParam long id) {
         return ResponseEntity.ok(utenteService.findById(id).get());

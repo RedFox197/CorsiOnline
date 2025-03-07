@@ -26,6 +26,7 @@ public class ClasseController {
     @Autowired
     private ClasseService classeService;
 
+    @JsonView(Views.Classe.Completa.class)
     @PostMapping("/save")
     public Classe save(@RequestBody Classe entity) {
         return classeService.save(entity);
@@ -37,6 +38,7 @@ public class ClasseController {
         return classeService.findAll();
     }
 
+    @JsonView(Views.Classe.Completa.class)
     @GetMapping("/get")
     public Classe findById(@RequestParam Long id) {
         return classeService.findById(id).get();

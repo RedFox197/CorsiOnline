@@ -33,11 +33,13 @@ public class EsameController {
         return ResponseEntity.ok(esameService.findAll());
     }
 
+    @JsonView(Views.Esame.Completa.class)
     @PostMapping("/save")
     public ResponseEntity<Esame> save(@RequestBody Esame entity) {
         return ResponseEntity.ok(esameService.save(entity));
     }
 
+    @JsonView(Views.Esame.Completa.class)
     @GetMapping("/get")
     public ResponseEntity<Esame> findById(@RequestParam long id) {
         return ResponseEntity.ok(esameService.findById(id).get());

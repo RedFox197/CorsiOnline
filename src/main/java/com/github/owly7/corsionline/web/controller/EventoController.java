@@ -25,6 +25,7 @@ public class EventoController {
     @Autowired
     private EventoService eventoService;
 
+    @JsonView(Views.Evento.Completa.class)
     @PostMapping("/save")
     public Evento save(@RequestBody Evento entity) {
         return eventoService.save(entity);
@@ -36,6 +37,7 @@ public class EventoController {
         return eventoService.findAll();
     }
 
+    @JsonView(Views.Evento.Completa.class)
     @GetMapping("/get")
     public Evento findById(@RequestParam Long id) {
         return eventoService.findById(id).get();

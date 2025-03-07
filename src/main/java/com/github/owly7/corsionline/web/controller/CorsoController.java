@@ -34,11 +34,13 @@ public class CorsoController {
         return ResponseEntity.ok(corsoService.findAll());
     }
 
+    @JsonView(Views.Corso.Completa.class)
     @PostMapping("/save")
     public ResponseEntity<Corso> save(@RequestBody Corso entity) {
         return ResponseEntity.ok(corsoService.save(entity));
     }
-
+    
+    @JsonView(Views.Corso.Completa.class)
     @GetMapping("/get")
     public ResponseEntity<Corso> findById(@RequestParam long id) {
         return ResponseEntity.ok(corsoService.findById(id).get());

@@ -25,6 +25,7 @@ public class LezioneController {
     @Autowired
     private LezioneService lezioneService;
 
+    @JsonView(Views.Lezione.Completa.class)
     @PostMapping("/save")
     public Lezione save(@RequestBody Lezione entity) {
         return lezioneService.save(entity);
@@ -36,6 +37,7 @@ public class LezioneController {
         return lezioneService.findAll();
     }
 
+    @JsonView(Views.Lezione.Completa.class)
     @GetMapping("/get")
     public Lezione findById(@RequestParam Long id) {
         return lezioneService.findById(id).get();

@@ -25,6 +25,7 @@ public class MaterialeController {
     @Autowired
     private MaterialeService materialeService;
 
+    @JsonView(Views.Materiale.Completa.class)
     @PostMapping("/save")
     public Materiale save(@RequestBody Materiale entity) {
         return materialeService.save(entity);
@@ -36,6 +37,7 @@ public class MaterialeController {
         return materialeService.findAll();
     }
 
+    @JsonView(Views.Materiale.Completa.class)
     @GetMapping("/get")
     public Materiale findById(@RequestParam Long id) {
         return materialeService.findById(id).get();
