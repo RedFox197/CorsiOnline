@@ -45,7 +45,7 @@ public class ClasseController {
         return classeService.save(entity);
     }
 
-    // TODO aggiornare service con metodo save
+    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Classe update(@PathVariable Long id, @RequestBody Classe entity) {
         entity.setId(id);
