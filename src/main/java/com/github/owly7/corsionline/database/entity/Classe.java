@@ -11,16 +11,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.github.owly7.corsionline.web.Views;
-
-@JsonView(Views.Base.class)
+@Getter
+@Setter
 @Entity
 public class Classe {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,109 +32,22 @@ public class Classe {
 
     private LocalDate dataFine;
 
-    @JsonView(Views.Classe.Completa.class)
     @ManyToOne(fetch = FetchType.EAGER)
     private Corso corso;
 
-    @JsonView(Views.Classe.Completa.class)
     @ManyToOne(fetch = FetchType.EAGER)
     private Utente docente;
 
-    @JsonView(Views.Classe.Completa.class)
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Lezione> lezioni;
 
-    @JsonView(Views.Classe.Completa.class)
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Utente> studenti;
 
-    @JsonView(Views.Classe.Completa.class)
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Evento> eventi;
 
-    //TODO metterlo nell'utente togliendolo da qua (FORSE)
-    @JsonView(Views.Classe.Completa.class)
+    // TODO metterlo nell'utente togliendolo da qua (FORSE)
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Esame> esami;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public LocalDate getDataInizio() {
-        return dataInizio;
-    }
-
-    public void setDataInizio(LocalDate dataInizio) {
-        this.dataInizio = dataInizio;
-    }
-
-    public LocalDate getDataFine() {
-        return dataFine;
-    }
-
-    public void setDataFine(LocalDate dataFine) {
-        this.dataFine = dataFine;
-    }
-
-    public Corso getCorso() {
-        return corso;
-    }
-
-    public void setCorso(Corso corso) {
-        this.corso = corso;
-    }
-
-    public Utente getDocente() {
-        return docente;
-    }
-
-    public void setDocente(Utente docente) {
-        this.docente = docente;
-    }
-
-    public List<Lezione> getLezioni() {
-        return lezioni;
-    }
-
-    public void setLezioni(List<Lezione> lezioni) {
-        this.lezioni = lezioni;
-    }
-
-    public List<Utente> getStudenti() {
-        return studenti;
-    }
-
-    public void setStudenti(List<Utente> studenti) {
-        this.studenti = studenti;
-    }
-
-    public List<Evento> getEventi() {
-        return eventi;
-    }
-
-    public void setEventi(List<Evento> eventi) {
-        this.eventi = eventi;
-    }
-
-    public List<Esame> getEsami() {
-        return esami;
-    }
-
-    public void setEsami(List<Esame> esami) {
-        this.esami = esami;
-    }
-
 }
