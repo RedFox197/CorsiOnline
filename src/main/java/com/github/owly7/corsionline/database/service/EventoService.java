@@ -1,29 +1,30 @@
 package com.github.owly7.corsionline.database.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.owly7.corsionline.database.entity.Evento;
 import com.github.owly7.corsionline.database.repository.EventoRepo;
+import com.github.owly7.corsionline.exception.ResourceNotFoundException;
+import com.github.owly7.corsionline.web.dto.EventoDTO;
 
 @Service
 public class EventoService {
     @Autowired
     private EventoRepo eventoRepo;
 
-    public <S extends Evento> S save(S entity) {
-        return eventoRepo.save(entity);
+    public void save(Evento entity) {
+        eventoRepo.save(entity);
     }
 
-    public List<Evento> findAll() {
-        return eventoRepo.findAll();
+    public List<EventoDTO> findAll() {
+        return eventoRepo.findAll().stream().map(EventoDTO::fromEntity).toList();
     }
 
-    public Optional<Evento> findById(Long id) {
-        return eventoRepo.findById(id);
+    public EventoDTO findById(Long id) {
+        return eventoRepo.findById(id).map(EventoDTO::fromEntity).orElseThrow(() -> new ResourceNotFoundException("evento " + id + " non trovato"));
     }
 
     public void deleteById(Long id) {
