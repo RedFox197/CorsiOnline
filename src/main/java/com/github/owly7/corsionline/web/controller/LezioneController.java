@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.lezione.Lezione;
-import com.github.owly7.corsionline.database.entity.lezione.Materiale;
 import com.github.owly7.corsionline.database.service.LezioneService;
+import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
+import com.github.owly7.corsionline.web.dto.lezione.MaterialeDTO;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -27,31 +28,29 @@ public class LezioneController {
     private LezioneService lezioneService;
 
     @GetMapping
-    public List<Lezione> findAll() {
+    public List<LezioneDTO> findAll() {
         return lezioneService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Lezione findById(@PathVariable Long id) {
-        return lezioneService.findById(id).get();
+    public LezioneDTO findById(@PathVariable Long id) {
+        return lezioneService.findById(id);
     }
 
     @GetMapping("/{id}/materiali")
-    public List<Materiale> getMateriali(@PathVariable Long id) {
-        return lezioneService.findById(id).get().getMateriali();
+    public List<MaterialeDTO> getMateriali(@PathVariable Long id) {
+        return lezioneService.findMateriali(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Lezione save(@RequestBody Lezione entity) {
-        return lezioneService.save(entity);
+    public void save(@RequestBody Lezione entity) {
+        lezioneService.save(entity);
     }
 
-    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Lezione update(@PathVariable Long id, @RequestBody Lezione entity) {
-        entity.setId(id);
-        return lezioneService.save(entity);
+        return lezioneService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
