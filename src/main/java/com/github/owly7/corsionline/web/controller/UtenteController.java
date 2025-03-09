@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.owly7.corsionline.database.entity.Classe;
-import com.github.owly7.corsionline.database.entity.Esame;
 import com.github.owly7.corsionline.database.entity.Utente;
 import com.github.owly7.corsionline.database.service.UtenteService;
+import com.github.owly7.corsionline.web.dto.ClasseDTO;
+import com.github.owly7.corsionline.web.dto.EsameDTO;
+import com.github.owly7.corsionline.web.dto.UtenteDTO;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -29,36 +30,34 @@ public class UtenteController {
     private UtenteService utenteService;
 
     @GetMapping
-    public List<Utente> findAll() {
+    public List<UtenteDTO> findAll() {
         return utenteService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Utente findById(@PathVariable Long id) {
-        return utenteService.findById(id).get();
+    public UtenteDTO findById(@PathVariable Long id) {
+        return utenteService.findById(id);
     }
 
     @GetMapping("/{id}/classi")
-    public List<Classe> getClassi(@PathVariable Long id) {
-        return utenteService.findById(id).get().getClassi();
+    public List<ClasseDTO> getClassi(@PathVariable Long id) {
+        return utenteService.findClassi(id);
     }
 
     @GetMapping("/{id}/esami")
-    public List<Esame> getEsami(@PathVariable Long id) {
-        return utenteService.findById(id).get().getEsami();
+    public List<EsameDTO> getEsami(@PathVariable Long id) {
+        return utenteService.findEsami(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Utente save(@RequestBody Utente entity) {
-        return utenteService.save(entity);
+    public void save(@RequestBody Utente entity) {
+        utenteService.save(entity);
     }
 
-    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Utente update(@PathVariable Long id, @RequestBody Utente entity) {
-        entity.setId(id);
-        return utenteService.save(entity);
+        return utenteService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
