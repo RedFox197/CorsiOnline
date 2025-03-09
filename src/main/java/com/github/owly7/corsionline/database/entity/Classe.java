@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,21 +33,21 @@ public class Classe {
 
     private LocalDate dataFine;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Corso corso;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Utente docente;
 
-    @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "classe")
     private List<Lezione> lezioni;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Utente> studenti;
 
-    @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "classe")
     private List<Evento> eventi;
 
-    @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "classe")
     private List<Esame> esami;
 }

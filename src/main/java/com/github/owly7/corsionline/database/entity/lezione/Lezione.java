@@ -6,7 +6,6 @@ import com.github.owly7.corsionline.database.entity.Classe;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,9 +28,9 @@ public class Lezione {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Classe classe;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private List<Materiale> materiali;
 }
