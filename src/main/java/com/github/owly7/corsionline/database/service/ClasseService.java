@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.owly7.corsionline.database.entity.Classe;
+import com.github.owly7.corsionline.database.entity.Utente;
 import com.github.owly7.corsionline.database.repository.ClasseRepo;
 import com.github.owly7.corsionline.exception.ResourceNotFoundException;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
+import com.github.owly7.corsionline.web.dto.UtenteDTO;
 
 @Service
 public class ClasseService {
@@ -25,6 +27,20 @@ public class ClasseService {
         }
 
         classe.setId(id);
+        classeRepo.save(classe);
+    }
+
+    public void addStudenti(Long id, List<UtenteDTO> studentiIn) {
+        Classe classe = classeRepo.findByIdWithStudenti(id)
+                .orElseThrow(() -> new ResourceNotFoundException("classe " + id + " non trovata"));
+
+        List<Utente> studenti = classe.getStudenti();
+        if (studenti != null) {
+            studenti.addAll(studentiIn.stream().map(UtenteDTO::toEntity).toList());
+        } else {
+            studenti = studentiIn.stream().map(UtenteDTO::toEntity).toList();
+        }
+
         classeRepo.save(classe);
     }
 

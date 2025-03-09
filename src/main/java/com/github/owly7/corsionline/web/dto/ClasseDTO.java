@@ -14,6 +14,10 @@ public record ClasseDTO(
 ) {
 
     public static ClasseDTO fromEntity(Classe classe) {
+        if (classe == null) {
+            return null;
+        }
+        
         return new ClasseDTO(
             classe.getId(),
             classe.getNome(),

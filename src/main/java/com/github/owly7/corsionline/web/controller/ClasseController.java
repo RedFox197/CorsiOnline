@@ -67,6 +67,11 @@ public class ClasseController {
         return utenteService.findStudenteByClasseId(id);
     }
 
+    @PutMapping("/{id}/studenti")
+    public void addStudenti(@PathVariable Long id, @RequestBody List<UtenteDTO> studenti) {
+        classeService.addStudenti(id, studenti);
+    }
+
     @GetMapping("/{id}/eventi")
     public List<EventoDTO> getEventi(@PathVariable Long id) {
         return eventoService.findByClasseId(id);

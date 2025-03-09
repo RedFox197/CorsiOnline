@@ -13,6 +13,10 @@ public record EventoDTO(
 ) {
 
     public static EventoDTO fromEntity(Evento evento) {
+        if (evento == null) {
+            return null;
+        }
+        
         return new EventoDTO(
             evento.getId(),
             evento.getTitolo(), 
@@ -21,5 +25,4 @@ public record EventoDTO(
             ClasseDTO.fromEntity(evento.getClasse())
         );
     }
-
 }

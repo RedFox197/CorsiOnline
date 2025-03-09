@@ -12,6 +12,10 @@ public record UtenteDTO(
 ) {
 
     public static UtenteDTO fromEntity(Utente utente) {
+        if (utente == null) {
+            return null;
+        }
+
         return new UtenteDTO(
             utente.getId(),
             utente.getNome(),
@@ -21,4 +25,17 @@ public record UtenteDTO(
         );
     }
 
+    public static Utente toEntity(UtenteDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        
+        Utente utente = new Utente();
+        utente.setId(dto.id());
+        utente.setNome(dto.nome());
+        utente.setCognome(dto.cognome());
+        utente.setEmail(dto.email());
+        utente.setRuolo(dto.ruolo());
+        return utente;
+    }
 }

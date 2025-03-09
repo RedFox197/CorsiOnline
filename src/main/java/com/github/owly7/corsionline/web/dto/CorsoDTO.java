@@ -9,6 +9,10 @@ public record CorsoDTO(
 ) {
 
     public static CorsoDTO fromEntity(Corso corso) {
+        if (corso == null) {
+            return null;
+        }
+        
         return new CorsoDTO(
             corso.getId(),
             corso.getTitolo(),

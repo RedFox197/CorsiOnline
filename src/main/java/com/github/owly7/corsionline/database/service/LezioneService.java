@@ -40,6 +40,8 @@ public class LezioneService {
         } else {
             materiali = materialiIn.stream().map(MaterialeDTO::toEntity).toList();
         }
+
+        lezioneRepo.save(lezione);
     }
 
     public List<LezioneDTO> findAll() {
