@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Classe;
-import com.github.owly7.corsionline.database.entity.Esame;
-import com.github.owly7.corsionline.database.entity.Evento;
-import com.github.owly7.corsionline.database.entity.Utente;
-import com.github.owly7.corsionline.database.entity.lezione.Lezione;
 import com.github.owly7.corsionline.database.service.ClasseService;
+import com.github.owly7.corsionline.web.dto.ClasseDTO;
+import com.github.owly7.corsionline.web.dto.EsameDTO;
+import com.github.owly7.corsionline.web.dto.EventoDTO;
+import com.github.owly7.corsionline.web.dto.UtenteDTO;
+import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,46 +32,44 @@ public class ClasseController {
     private ClasseService classeService;
 
     @GetMapping
-    public List<Classe> findAll() {
+    public List<ClasseDTO> findAll() {
         return classeService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Classe findById(@PathVariable Long id) {
-        return classeService.findById(id).get();
+    public ClasseDTO findById(@PathVariable Long id) {
+        return classeService.findById(id);
     }
 
     @GetMapping("/{id}/lezioni")
-    public List<Lezione> getLezioni(@PathVariable Long id) {
-        return classeService.findById(id).get().getLezioni();
+    public List<LezioneDTO> getLezioni(@PathVariable Long id) {
+        return classeService.findLezioni(id);
     }
 
     @GetMapping("/{id}/studenti")
-    public List<Utente> getStudenti(@PathVariable Long id) {
-        return classeService.findById(id).get().getStudenti();
+    public List<UtenteDTO> getStudenti(@PathVariable Long id) {
+        return classeService.findStudenti(id);
     }
 
     @GetMapping("/{id}/eventi")
-    public List<Evento> getEventi(@PathVariable Long id) {
-        return classeService.findById(id).get().getEventi();
+    public List<EventoDTO> getEventi(@PathVariable Long id) {
+        return classeService.findEventi(id);
     }
 
     @GetMapping("/{id}/esami")
-    public List<Esame> getEsami(@PathVariable Long id) {
-        return classeService.findById(id).get().getEsami();
+    public List<EsameDTO> getEsami(@PathVariable Long id) {
+        return classeService.findEsami(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Classe save(@RequestBody Classe entity) {
-        return classeService.save(entity);
+    public void save(@RequestBody Classe entity) {
+        classeService.save(entity);
     }
 
-    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Classe update(@PathVariable Long id, @RequestBody Classe entity) {
-        entity.setId(id);
-        return classeService.save(entity);
+        return classeService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
