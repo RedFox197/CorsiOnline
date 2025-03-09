@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Evento;
 import com.github.owly7.corsionline.database.service.EventoService;
+import com.github.owly7.corsionline.web.dto.EventoDTO;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -26,26 +27,24 @@ public class EventoController {
     private EventoService eventoService;
 
     @GetMapping
-    public List<Evento> findAll() {
+    public List<EventoDTO> findAll() {
         return eventoService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Evento findById(@PathVariable Long id) {
-        return eventoService.findById(id).get();
+    public EventoDTO findById(@PathVariable Long id) {
+        return eventoService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Evento save(@RequestBody Evento entity) {
-        return eventoService.save(entity);
+    public void save(@RequestBody Evento entity) {
+        eventoService.save(entity);
     }
 
-    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Evento update(@PathVariable Long id, @RequestBody Evento entity) {
-        entity.setId(id);
-        return eventoService.save(entity);
+        return eventoService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

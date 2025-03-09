@@ -19,12 +19,22 @@ public class EventoService {
         eventoRepo.save(entity);
     }
 
+    public Evento update(Long id, Evento evento) {
+        if (!eventoRepo.existsById(id)) {
+            throw new ResourceNotFoundException("Evento " + id + " non trovato! Impossibile Aggiornare");
+        }
+
+        evento.setId(id);
+        return eventoRepo.save(evento);
+    }
+
     public List<EventoDTO> findAll() {
         return eventoRepo.findAll().stream().map(EventoDTO::fromEntity).toList();
     }
 
     public EventoDTO findById(Long id) {
-        return eventoRepo.findById(id).map(EventoDTO::fromEntity).orElseThrow(() -> new ResourceNotFoundException("evento " + id + " non trovato"));
+        return eventoRepo.findById(id).map(EventoDTO::fromEntity)
+                .orElseThrow(() -> new ResourceNotFoundException("evento " + id + " non trovato"));
     }
 
     public void deleteById(Long id) {
