@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.github.owly7.corsionline.database.entity.lezione.Lezione;
+import com.github.owly7.corsionline.database.entity.lezione.Materiale;
 import com.github.owly7.corsionline.database.repository.LezioneRepo;
-import com.github.owly7.corsionline.database.repository.MaterialeRepo;
 import com.github.owly7.corsionline.exception.ResourceNotFoundException;
 import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
 import com.github.owly7.corsionline.web.dto.lezione.MaterialeDTO;
@@ -17,20 +17,29 @@ public class LezioneService {
     @Autowired
     private LezioneRepo lezioneRepo;
 
-    @Autowired
-    private MaterialeRepo materialeRepo;
-
     public void save(Lezione entity) {
         lezioneRepo.save(entity);
     }
 
-    public Lezione update(Long id, Lezione lezione) {
+    public void update(Long id, Lezione lezione) {
         if (!lezioneRepo.existsById(id)) {
             throw new ResourceNotFoundException("Lezione " + id + " non trovata! Impossibile Aggiornare");
         }
 
         lezione.setId(id);
-        return lezioneRepo.save(lezione);
+        lezioneRepo.save(lezione);
+    }
+
+    public void addMateriali(Long id, List<MaterialeDTO> materialiIn) {
+        Lezione lezione = lezioneRepo.findByIdWithMateriali(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Lezione " + id + " non trovata! Impossibile Aggiornare"));
+        
+        List<Materiale> materiali = lezione.getMateriali();
+        if (materiali != null) {
+            materiali.addAll(materialiIn.stream().map(MaterialeDTO::toEntity).toList());
+        } else {
+            materiali = materialiIn.stream().map(MaterialeDTO::toEntity).toList();
+        }
     }
 
     public List<LezioneDTO> findAll() {
@@ -42,8 +51,8 @@ public class LezioneService {
                 .orElseThrow(() -> new ResourceNotFoundException("lezione " + id + " non trovata"));
     }
 
-    public List<MaterialeDTO> findMateriali(Long lezioneId) {
-        return materialeRepo.findByLezioneId(lezioneId).stream().map(MaterialeDTO::fromEntity).toList();
+    public List<LezioneDTO> findByClasseId(Long classeId) {
+        return lezioneRepo.findByClasseId(classeId).stream().map(LezioneDTO::fromEntity).toList();
     }
 
     public void deleteById(Long id) {

@@ -44,8 +44,8 @@ public class EsameController {
     }
 
     @PutMapping("/{id}")
-    public Esame update(@PathVariable Long id, @RequestBody Esame entity) {
-        return esameService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody Esame entity) {
+        esameService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

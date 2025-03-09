@@ -12,5 +12,5 @@ import com.github.owly7.corsionline.database.entity.Utente;
 @Repository
 public interface UtenteRepo extends JpaRepository<Utente, Long> {
     @Query("SELECT u FROM Utente u JOIN u.classi c WHERE c.id = :id")
-    List<Utente> findByClasseId(@Param("id") Long id);
+    List<Utente> findStudenteByClasseId(@Param("id") Long id);
 }

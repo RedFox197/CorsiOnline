@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Corso;
+import com.github.owly7.corsionline.database.service.ClasseService;
 import com.github.owly7.corsionline.database.service.CorsoService;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
 import com.github.owly7.corsionline.web.dto.CorsoDTO;
@@ -29,6 +30,9 @@ public class CorsoController {
     @Autowired
     private CorsoService corsoService;
 
+    @Autowired
+    private ClasseService classeService;
+
     @GetMapping
     public List<CorsoDTO> findAll() {
         return corsoService.findAll();
@@ -41,7 +45,7 @@ public class CorsoController {
 
     @GetMapping("/{id}/classi")
     public List<ClasseDTO> getClassi(@PathVariable Long id) {
-        return corsoService.findClassi(id);
+        return classeService.findByCorsoId(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,8 +55,8 @@ public class CorsoController {
     }
 
     @PutMapping("/{id}")
-    public Corso update(@PathVariable Long id, @RequestBody Corso entity) {
-        return corsoService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody Corso entity) {
+        corsoService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

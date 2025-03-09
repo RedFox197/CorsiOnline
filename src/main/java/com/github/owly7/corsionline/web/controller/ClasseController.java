@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Classe;
 import com.github.owly7.corsionline.database.service.ClasseService;
+import com.github.owly7.corsionline.database.service.EsameService;
+import com.github.owly7.corsionline.database.service.EventoService;
+import com.github.owly7.corsionline.database.service.LezioneService;
+import com.github.owly7.corsionline.database.service.UtenteService;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
 import com.github.owly7.corsionline.web.dto.EsameDTO;
 import com.github.owly7.corsionline.web.dto.EventoDTO;
@@ -31,6 +35,18 @@ public class ClasseController {
     @Autowired
     private ClasseService classeService;
 
+    @Autowired
+    private LezioneService lezioneService;
+
+    @Autowired
+    private UtenteService utenteService;
+
+    @Autowired
+    private EventoService eventoService;
+
+    @Autowired
+    private EsameService esameService;
+
     @GetMapping
     public List<ClasseDTO> findAll() {
         return classeService.findAll();
@@ -43,22 +59,22 @@ public class ClasseController {
 
     @GetMapping("/{id}/lezioni")
     public List<LezioneDTO> getLezioni(@PathVariable Long id) {
-        return classeService.findLezioni(id);
+        return lezioneService.findByClasseId(id);
     }
 
     @GetMapping("/{id}/studenti")
     public List<UtenteDTO> getStudenti(@PathVariable Long id) {
-        return classeService.findStudenti(id);
+        return utenteService.findStudenteByClasseId(id);
     }
 
     @GetMapping("/{id}/eventi")
     public List<EventoDTO> getEventi(@PathVariable Long id) {
-        return classeService.findEventi(id);
+        return eventoService.findByClasseId(id);
     }
 
     @GetMapping("/{id}/esami")
     public List<EsameDTO> getEsami(@PathVariable Long id) {
-        return classeService.findEsami(id);
+        return esameService.findByClasseId(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -68,8 +84,8 @@ public class ClasseController {
     }
 
     @PutMapping("/{id}")
-    public Classe update(@PathVariable Long id, @RequestBody Classe entity) {
-        return classeService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody Classe entity) {
+        classeService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -19,4 +19,13 @@ public record MaterialeDTO(
         );
     }
 
+    public static Materiale toEntity(MaterialeDTO materialeDTO) {
+        Materiale materiale = new Materiale();
+        materiale.setId(materialeDTO.id());
+        materiale.setNome(materialeDTO.nome());
+        materiale.setTipo(materialeDTO.tipo());
+        materiale.setUrl(materialeDTO.url());
+        return materiale;
+    }
+
 }

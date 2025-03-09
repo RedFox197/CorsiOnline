@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Utente;
+import com.github.owly7.corsionline.database.service.ClasseService;
+import com.github.owly7.corsionline.database.service.EsameService;
 import com.github.owly7.corsionline.database.service.UtenteService;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
 import com.github.owly7.corsionline.web.dto.EsameDTO;
@@ -29,6 +31,12 @@ public class UtenteController {
     @Autowired
     private UtenteService utenteService;
 
+    @Autowired
+    private ClasseService classeService;
+
+    @Autowired
+    private EsameService esameService;
+
     @GetMapping
     public List<UtenteDTO> findAll() {
         return utenteService.findAll();
@@ -41,12 +49,12 @@ public class UtenteController {
 
     @GetMapping("/{id}/classi")
     public List<ClasseDTO> getClassi(@PathVariable Long id) {
-        return utenteService.findClassi(id);
+        return classeService.findByStudenteId(id);
     }
 
     @GetMapping("/{id}/esami")
     public List<EsameDTO> getEsami(@PathVariable Long id) {
-        return utenteService.findEsami(id);
+        return esameService.findByUtenteId(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -56,8 +64,8 @@ public class UtenteController {
     }
 
     @PutMapping("/{id}")
-    public Utente update(@PathVariable Long id, @RequestBody Utente entity) {
-        return utenteService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody Utente entity) {
+        utenteService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

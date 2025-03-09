@@ -43,8 +43,8 @@ public class MaterialeController {
     }
 
     @PutMapping("/{id}")
-    public Materiale update(@PathVariable Long id, @RequestBody Materiale entity) {
-        return materialeService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody Materiale entity) {
+        materialeService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.lezione.Lezione;
 import com.github.owly7.corsionline.database.service.LezioneService;
+import com.github.owly7.corsionline.database.service.MaterialeService;
 import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
 import com.github.owly7.corsionline.web.dto.lezione.MaterialeDTO;
 
@@ -26,6 +27,9 @@ import com.github.owly7.corsionline.web.dto.lezione.MaterialeDTO;
 public class LezioneController {
     @Autowired
     private LezioneService lezioneService;
+
+    @Autowired
+    private MaterialeService materialeService;
 
     @GetMapping
     public List<LezioneDTO> findAll() {
@@ -39,7 +43,12 @@ public class LezioneController {
 
     @GetMapping("/{id}/materiali")
     public List<MaterialeDTO> getMateriali(@PathVariable Long id) {
-        return lezioneService.findMateriali(id);
+        return materialeService.findByLezioneId(id);
+    }
+
+    @PutMapping("/{id}/materiali")
+    public void addMateriali(@PathVariable Long id, @RequestBody List<MaterialeDTO> materiali) {
+        lezioneService.addMateriali(id, materiali);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -49,8 +58,8 @@ public class LezioneController {
     }
 
     @PutMapping("/{id}")
-    public Lezione update(@PathVariable Long id, @RequestBody Lezione entity) {
-        return lezioneService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody Lezione entity) {
+        lezioneService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

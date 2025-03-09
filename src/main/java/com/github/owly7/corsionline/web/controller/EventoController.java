@@ -43,8 +43,8 @@ public class EventoController {
     }
 
     @PutMapping("/{id}")
-    public Evento update(@PathVariable Long id, @RequestBody Evento entity) {
-        return eventoService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody Evento entity) {
+        eventoService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
