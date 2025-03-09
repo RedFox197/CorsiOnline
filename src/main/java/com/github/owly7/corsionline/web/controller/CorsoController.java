@@ -3,9 +3,10 @@ package com.github.owly7.corsionline.web.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.owly7.corsionline.database.entity.Classe;
 import com.github.owly7.corsionline.database.entity.Corso;
 import com.github.owly7.corsionline.database.service.CorsoService;
+import com.github.owly7.corsionline.web.dto.ClasseDTO;
+import com.github.owly7.corsionline.web.dto.CorsoDTO;
 
 import java.util.List;
 
@@ -29,31 +30,29 @@ public class CorsoController {
     private CorsoService corsoService;
 
     @GetMapping
-    public List<Corso> findAll() {
+    public List<CorsoDTO> findAll() {
         return corsoService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Corso findById(@PathVariable Long id) {
-        return corsoService.findById(id).get();
+    public CorsoDTO findById(@PathVariable Long id) {
+        return corsoService.findById(id);
     }
 
     @GetMapping("/{id}/classi")
-    public List<Classe> getClassi(@PathVariable Long id) {
-        return corsoService.findById(id).get().getClassi();
+    public List<ClasseDTO> getClassi(@PathVariable Long id) {
+        return corsoService.findClassi(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Corso save(@RequestBody Corso entity) {
-        return corsoService.save(entity);
+    public void save(@RequestBody Corso entity) {
+        corsoService.save(entity);
     }
 
-    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Corso update(@PathVariable Long id, @RequestBody Corso entity) {
-        entity.setId(id);
-        return corsoService.save(entity);
+        return corsoService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
