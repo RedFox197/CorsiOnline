@@ -3,6 +3,7 @@ package com.github.owly7.corsionline.web.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.owly7.corsionline.database.entity.Classe;
 import com.github.owly7.corsionline.database.entity.Corso;
 import com.github.owly7.corsionline.database.service.CorsoService;
 
@@ -35,6 +36,11 @@ public class CorsoController {
     @GetMapping("/{id}")
     public Corso findById(@PathVariable Long id) {
         return corsoService.findById(id).get();
+    }
+
+    @GetMapping("/{id}/classi")
+    public List<Classe> getClassi(@PathVariable Long id) {
+        return corsoService.findById(id).get().getClassi();
     }
 
     @ResponseStatus(HttpStatus.CREATED)

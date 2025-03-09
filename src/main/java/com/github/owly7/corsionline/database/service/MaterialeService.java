@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.owly7.corsionline.database.entity.Materiale;
+import com.github.owly7.corsionline.database.entity.lezione.Materiale;
 import com.github.owly7.corsionline.database.repository.MaterialeRepo;
 
 @Service

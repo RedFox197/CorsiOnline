@@ -1,6 +1,8 @@
-package com.github.owly7.corsionline.database.entity;
+package com.github.owly7.corsionline.database.entity.lezione;
 
 import java.util.List;
+
+import com.github.owly7.corsionline.database.entity.Classe;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,7 +32,6 @@ public class Lezione {
     @ManyToOne(fetch = FetchType.EAGER)
     private Classe classe;
 
-    // TODO mettere il mapped by in materiale FORSE
-    @ManyToMany(mappedBy = "lezioni", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Materiale> materiali;
 }

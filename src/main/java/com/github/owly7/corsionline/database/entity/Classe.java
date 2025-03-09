@@ -16,6 +16,8 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.github.owly7.corsionline.database.entity.lezione.Lezione;
+
 @Getter
 @Setter
 @Entity
@@ -47,7 +49,6 @@ public class Classe {
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Evento> eventi;
 
-    // TODO metterlo nell'utente togliendolo da qua (FORSE)
     @OneToMany(mappedBy = "classe", fetch = FetchType.EAGER)
     private List<Esame> esami;
 }

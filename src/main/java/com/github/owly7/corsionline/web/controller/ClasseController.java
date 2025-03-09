@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Classe;
+import com.github.owly7.corsionline.database.entity.Esame;
+import com.github.owly7.corsionline.database.entity.Evento;
+import com.github.owly7.corsionline.database.entity.Utente;
+import com.github.owly7.corsionline.database.entity.lezione.Lezione;
 import com.github.owly7.corsionline.database.service.ClasseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +38,26 @@ public class ClasseController {
     @GetMapping("/{id}")
     public Classe findById(@PathVariable Long id) {
         return classeService.findById(id).get();
+    }
+
+    @GetMapping("/{id}/lezioni")
+    public List<Lezione> getLezioni(@PathVariable Long id) {
+        return classeService.findById(id).get().getLezioni();
+    }
+
+    @GetMapping("/{id}/studenti")
+    public List<Utente> getStudenti(@PathVariable Long id) {
+        return classeService.findById(id).get().getStudenti();
+    }
+
+    @GetMapping("/{id}/eventi")
+    public List<Evento> getEventi(@PathVariable Long id) {
+        return classeService.findById(id).get().getEventi();
+    }
+
+    @GetMapping("/{id}/esami")
+    public List<Esame> getEsami(@PathVariable Long id) {
+        return classeService.findById(id).get().getEsami();
     }
 
     @ResponseStatus(HttpStatus.CREATED)

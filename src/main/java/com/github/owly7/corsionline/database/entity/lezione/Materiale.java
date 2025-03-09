@@ -1,10 +1,9 @@
-package com.github.owly7.corsionline.database.entity;
+package com.github.owly7.corsionline.database.entity.lezione;
 
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,15 +19,15 @@ public class Materiale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(length = 100)
     private String nome;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String tipo;
 
     @Column(columnDefinition = "TEXT")
     private String url;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "materiali")
     private List<Lezione> lezioni;
 }

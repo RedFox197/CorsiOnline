@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,14 +23,13 @@ public class Utente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String email;
-
     @Column(length = 100, nullable = false)
     private String nome;
 
     @Column(length = 100)
     private String cognome;
+
+    private String email;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -38,7 +38,7 @@ public class Utente {
     @ManyToMany(mappedBy = "studenti", fetch = FetchType.EAGER)
     private List<Classe> classi;
 
-    @ManyToMany(mappedBy = "studenti", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "studente", fetch = FetchType.EAGER)
     private List<Esame> esami;
 
     public enum Ruolo {

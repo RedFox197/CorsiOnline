@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.owly7.corsionline.database.entity.Lezione;
+import com.github.owly7.corsionline.database.entity.lezione.Lezione;
+import com.github.owly7.corsionline.database.entity.lezione.Materiale;
 import com.github.owly7.corsionline.database.service.LezioneService;
 
 @CrossOrigin("http://localhost:5173/")
@@ -33,6 +34,11 @@ public class LezioneController {
     @GetMapping("/{id}")
     public Lezione findById(@PathVariable Long id) {
         return lezioneService.findById(id).get();
+    }
+
+    @GetMapping("/{id}/materiali")
+    public List<Materiale> getMateriali(@PathVariable Long id) {
+        return lezioneService.findById(id).get().getMateriali();
     }
 
     @ResponseStatus(HttpStatus.CREATED)

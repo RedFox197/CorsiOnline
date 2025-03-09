@@ -1,5 +1,13 @@
 package com.github.owly7.corsionline.web.dto;
 
-public record UtenteDTO() {
+import com.github.owly7.corsionline.database.entity.Utente.Ruolo;
+
+public record UtenteDTO(
+    Long id,
+    String nome,
+    String cognome,
+    String email,
+    Ruolo ruolo
+) {
 
 }
