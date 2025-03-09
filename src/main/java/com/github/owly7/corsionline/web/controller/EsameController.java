@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Esame;
 import com.github.owly7.corsionline.database.service.EsameService;
+import com.github.owly7.corsionline.web.dto.EsameDTO;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -27,26 +28,24 @@ public class EsameController {
     private EsameService esameService;
 
     @GetMapping
-    public List<Esame> findAll() {
+    public List<EsameDTO> findAll() {
         return esameService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Esame findById(@PathVariable Long id) {
-        return esameService.findById(id).get();
+    public EsameDTO findById(@PathVariable Long id) {
+        return esameService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Esame save(@RequestBody Esame entity) {
-        return esameService.save(entity);
+    public void save(@RequestBody Esame entity) {
+        esameService.save(entity);
     }
 
-    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Esame update(@PathVariable Long id, @RequestBody Esame entity) {
-        entity.setId(id);
-        return esameService.save(entity);
+        return esameService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

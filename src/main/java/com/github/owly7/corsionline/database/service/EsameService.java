@@ -20,12 +20,22 @@ public class EsameService {
         esameRepo.save(entity);
     }
 
+    public Esame update(Long id, Esame esame) {
+        if (!esameRepo.existsById(id)) {
+            throw new ResourceNotFoundException("Esame " + id + " non trovato! Impossibile Aggiornare");
+        }
+
+        esame.setId(id);
+        return esameRepo.save(esame);
+    }
+
     public List<EsameDTO> findAll() {
         return esameRepo.findAll().stream().map(EsameDTO::fromEntity).toList();
     }
 
     public EsameDTO findById(Long id) {
-        return esameRepo.findById(id).map(EsameDTO::fromEntity).orElseThrow(() -> new ResourceNotFoundException("Esame " + id + " non trovato"));
+        return esameRepo.findById(id).map(EsameDTO::fromEntity)
+                .orElseThrow(() -> new ResourceNotFoundException("Esame " + id + " non trovato"));
     }
 
     public void deleteById(Long id) {
