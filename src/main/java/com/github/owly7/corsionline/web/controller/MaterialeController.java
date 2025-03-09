@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.lezione.Materiale;
 import com.github.owly7.corsionline.database.service.MaterialeService;
+import com.github.owly7.corsionline.web.dto.lezione.MaterialeDTO;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -26,26 +27,24 @@ public class MaterialeController {
     private MaterialeService materialeService;
 
     @GetMapping
-    public List<Materiale> findAll() {
+    public List<MaterialeDTO> findAll() {
         return materialeService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Materiale findById(@PathVariable Long id) {
-        return materialeService.findById(id).get();
+    public MaterialeDTO findById(@PathVariable Long id) {
+        return materialeService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Materiale save(@RequestBody Materiale entity) {
-        return materialeService.save(entity);
+    public void save(@RequestBody Materiale entity) {
+        materialeService.save(entity);
     }
 
-    // TODO aggiornare service con metodo update
     @PutMapping("/{id}")
     public Materiale update(@PathVariable Long id, @RequestBody Materiale entity) {
-        entity.setId(id);
-        return materialeService.save(entity);
+        return materialeService.update(id, entity);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

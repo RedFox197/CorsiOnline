@@ -19,12 +19,22 @@ public class MaterialeService {
         materialeRepo.save(entity);
     }
 
+    public Materiale update(Long id, Materiale materiale) {
+        if (!materialeRepo.existsById(id)) {
+            throw new ResourceNotFoundException("Materiale " + id + " non trovato! Impossibile Aggiornare");
+        }
+
+        materiale.setId(id);
+        return materialeRepo.save(materiale);
+    }
+
     public List<MaterialeDTO> findAll() {
         return materialeRepo.findAll().stream().map(MaterialeDTO::fromEntity).toList();
     }
 
     public MaterialeDTO findById(Long id) {
-        return materialeRepo.findById(id).map(MaterialeDTO::fromEntity).orElseThrow(() -> new ResourceNotFoundException("materiale " + id + " non trovato"));
+        return materialeRepo.findById(id).map(MaterialeDTO::fromEntity)
+                .orElseThrow(() -> new ResourceNotFoundException("materiale " + id + " non trovato"));
     }
 
     public void deleteById(Long id) {
