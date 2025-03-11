@@ -2,6 +2,7 @@ package com.github.owly7.corsionline.database.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,7 +42,7 @@ public class Classe {
     @ManyToOne
     private Utente docente;
 
-    @OneToMany(mappedBy = "classe")
+    @OneToMany(mappedBy = "classe", cascade = CascadeType.REMOVE)
     private List<Lezione> lezioni;
 
     @ManyToMany
