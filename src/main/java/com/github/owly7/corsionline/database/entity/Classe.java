@@ -48,8 +48,5 @@ public class Classe {
     private List<Utente> studenti;
 
     @OneToMany(mappedBy = "classe")
-    private List<Evento> eventi;
-
-    @OneToMany(mappedBy = "classe")
     private List<Esame> esami;
 }
