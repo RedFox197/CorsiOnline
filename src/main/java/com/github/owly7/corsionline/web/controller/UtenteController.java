@@ -48,7 +48,7 @@ public class UtenteController {
 
     @GetMapping("/{id}")
     public UtenteDTO findById(@PathVariable Long id) {
-        return utenteService.findById(id);
+        return UtenteDTO.fromEntity(utenteService.findById(id));
     }
 
     @GetMapping("/{id}/classi")
@@ -59,6 +59,15 @@ public class UtenteController {
     @GetMapping("/{id}/esami")
     public List<EsameDTO> getEsami(@PathVariable Long id) {
         return esameService.findByUtenteId(id);
+    }
+
+    @PutMapping("/{id}/classi")
+    public void updateClassi(
+            @PathVariable Long id,
+            @RequestParam(required = false, defaultValue = "false") boolean delete,
+            @RequestBody List<Long> classi
+    ) {
+        utenteService.updateClassi(id, classi, delete);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
