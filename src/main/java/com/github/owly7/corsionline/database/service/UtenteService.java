@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.owly7.corsionline.database.entity.Utente;
+import com.github.owly7.corsionline.database.entity.Utente.Ruolo;
 import com.github.owly7.corsionline.database.repository.UtenteRepo;
 import com.github.owly7.corsionline.exception.ResourceNotFoundException;
 import com.github.owly7.corsionline.web.dto.UtenteDTO;
@@ -36,6 +37,10 @@ public class UtenteService {
     public UtenteDTO findById(Long id) {
         return utenteRepo.findById(id).map(UtenteDTO::fromEntity)
                 .orElseThrow(() -> new ResourceNotFoundException("utente " + id + " non trovato"));
+    }
+
+    public List<Utente> findByRuolo(String ruolo) {
+        return utenteRepo.findByRuolo(Ruolo.valueOf(ruolo));
     }
 
     public List<UtenteDTO> findStudenteByClasseId(Long classeId) {
