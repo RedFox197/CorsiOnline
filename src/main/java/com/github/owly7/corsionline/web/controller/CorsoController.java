@@ -1,10 +1,10 @@
 package com.github.owly7.corsionline.web.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Corso;
-import com.github.owly7.corsionline.database.service.ClasseService;
 import com.github.owly7.corsionline.database.service.CorsoService;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
 import com.github.owly7.corsionline.web.dto.CorsoDTO;
@@ -30,22 +30,29 @@ public class CorsoController {
     @Autowired
     private CorsoService corsoService;
 
-    @Autowired
-    private ClasseService classeService;
-
     @GetMapping
     public List<CorsoDTO> findAll() {
-        return corsoService.findAll();
+        return corsoService.findAll().stream().map(CorsoDTO::fromEntity).toList();
     }
 
     @GetMapping("/{id}")
     public CorsoDTO findById(@PathVariable Long id) {
-        return corsoService.findById(id);
+        return CorsoDTO.fromEntity(corsoService.findById(id));
     }
 
     @GetMapping("/{id}/classi")
     public List<ClasseDTO> getClassi(@PathVariable Long id) {
-        return classeService.findByCorsoId(id);
+        Corso corso = corsoService.findByIdWithClassi(id);
+        return corso.getClassi().stream().map(ClasseDTO::fromEntity).toList();
+    }
+
+    @PutMapping("/{id}/classi")
+    public void updateClassi(
+            @PathVariable Long id,
+            @RequestParam(required = false, defaultValue = "false") boolean delete,
+            @RequestBody List<Long> classi
+    ) {
+        corsoService.updateClassi(id, classi, delete);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
