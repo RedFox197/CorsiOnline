@@ -3,6 +3,7 @@ package com.github.owly7.corsionline.web.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -91,6 +92,16 @@ public class ClasseController {
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Classe entity) {
         classeService.update(id, entity);
+    }
+
+    @PutMapping("/{id}/corso")
+    public void setCorso(@PathVariable Long id, @RequestParam(name = "id", required = false) Long corsoId) {
+        classeService.setCorso(id, corsoId);
+    }
+
+    @PutMapping("/{id}/docente")
+    public void setDocente(@PathVariable Long id, @RequestParam(name = "id", required = false) Long utenteId) {
+        classeService.setDocente(id, utenteId);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -8,11 +8,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 public class Esame {
     @Id
@@ -27,7 +29,7 @@ public class Esame {
 
     @Column(columnDefinition = "DECIMAL(10,2)")
     private float punteggio;
-    
+
     private LocalDate data;
 
     @ManyToOne

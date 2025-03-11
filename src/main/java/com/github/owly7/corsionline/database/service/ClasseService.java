@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.owly7.corsionline.database.entity.Classe;
+import com.github.owly7.corsionline.database.entity.Corso;
 import com.github.owly7.corsionline.database.entity.Utente;
 import com.github.owly7.corsionline.database.repository.ClasseRepo;
 import com.github.owly7.corsionline.exception.ResourceNotFoundException;
@@ -30,6 +31,26 @@ public class ClasseService {
         classeRepo.save(classe);
     }
 
+    public void setCorso(Long id, Long corsoId) {
+        Classe classe = getById(id);
+
+        Corso corso = new Corso();
+        corso.setId(corsoId);
+
+        classe.setCorso(corso);
+        classeRepo.save(classe);
+    }
+
+    public void setDocente(Long id, Long utenteId) {
+        Classe classe = getById(id);
+
+        Utente docente = new Utente();
+        docente.setId(utenteId);
+
+        classe.setDocente(docente);
+        classeRepo.save(classe);
+    }
+
     public void addStudenti(Long id, List<UtenteDTO> studentiIn) {
         Classe classe = classeRepo.findByIdWithStudenti(id)
                 .orElseThrow(() -> new ResourceNotFoundException("classe " + id + " non trovata"));
@@ -49,7 +70,11 @@ public class ClasseService {
     }
 
     public ClasseDTO findById(Long id) {
-        return classeRepo.findById(id).map(ClasseDTO::fromEntity)
+        return ClasseDTO.fromEntity(getById(id));
+    }
+
+    public Classe getById(Long id) {
+        return classeRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("classe " + id + " non trovata"));
     }
 
