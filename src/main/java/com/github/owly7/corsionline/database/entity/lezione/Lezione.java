@@ -36,6 +36,5 @@ public class Lezione {
 
     LocalDateTime data;
 
-    @ManyToMany
     private List<String> materiali;
 }
