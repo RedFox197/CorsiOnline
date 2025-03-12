@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Classe;
 import com.github.owly7.corsionline.database.service.ClasseService;
-import com.github.owly7.corsionline.database.service.EsameService;
 import com.github.owly7.corsionline.database.service.LezioneService;
 import com.github.owly7.corsionline.database.service.UtenteService;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
-import com.github.owly7.corsionline.web.dto.EsameDTO;
 import com.github.owly7.corsionline.web.dto.UtenteDTO;
 import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
 
@@ -39,9 +37,6 @@ public class ClasseController {
 
     @Autowired
     private UtenteService utenteService;
-
-    @Autowired
-    private EsameService esameService;
 
     @GetMapping
     public List<ClasseDTO> findAll() {
