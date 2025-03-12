@@ -1,9 +1,7 @@
-package com.github.owly7.corsionline.database.entity.lezione;
+package com.github.owly7.corsionline.database.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import com.github.owly7.corsionline.database.entity.Classe;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

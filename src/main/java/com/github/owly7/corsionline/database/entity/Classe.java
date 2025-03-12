@@ -17,8 +17,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import com.github.owly7.corsionline.database.entity.lezione.Lezione;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

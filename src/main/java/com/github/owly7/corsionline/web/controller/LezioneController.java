@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.owly7.corsionline.database.entity.lezione.Lezione;
+import com.github.owly7.corsionline.database.entity.Lezione;
 import com.github.owly7.corsionline.database.service.LezioneService;
 import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
 
