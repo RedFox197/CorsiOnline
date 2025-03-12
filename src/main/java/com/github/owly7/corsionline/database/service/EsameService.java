@@ -29,13 +29,12 @@ public class EsameService {
         esameRepo.save(esame);
     }
 
-    public List<EsameDTO> findAll() {
-        return esameRepo.findAll().stream().map(EsameDTO::fromEntity).toList();
+    public List<Esame> findAll() {
+        return esameRepo.findAll();
     }
 
-    public EsameDTO findById(Long id) {
-        return esameRepo.findById(id).map(EsameDTO::fromEntity)
-                .orElseThrow(() -> new ResourceNotFoundException("Esame " + id + " non trovato"));
+    public Esame findById(Long id) {
+        return esameRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Esame " + id + " non trovato"));
     }
 
     public List<EsameDTO> findByClasseId(Long classeId) {
@@ -44,6 +43,13 @@ public class EsameService {
 
     public List<EsameDTO> findByUtenteId(Long utenteId) {
         return esameRepo.findByUtenteId(utenteId).stream().map(EsameDTO::fromEntity).toList();
+    }
+
+    public List<Esame> findByUtenteNome(String nome, boolean like) {
+        if (like) {
+            return esameRepo.findByUtenteNomeLike(nome);
+        }
+        return esameRepo.findByUtenteNome(nome);
     }
 
     public void deleteById(Long id) {

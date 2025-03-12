@@ -20,4 +20,17 @@ public record CorsoDTO(
         );
     }
 
+    public static Corso toEntity(CorsoDTO corsoDTO) {
+        if (corsoDTO == null) {
+            return null;
+        }
+
+        Corso corso = new Corso();
+        corso.setId(corsoDTO.id());
+        corso.setTitolo(corsoDTO.titolo());
+        corso.setDescrizione(corsoDTO.descrizione());
+
+        return corso;
+    }
+
 }

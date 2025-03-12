@@ -28,4 +28,19 @@ public record ClasseDTO(
         );
     }
 
+    public static Classe toEntity(ClasseDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        Classe classe = new Classe();
+        classe.setId(dto.id());
+        classe.setNome(dto.nome());
+        classe.setDataInizio(dto.dataInizio());
+        classe.setDataFine(dto.dataFine());
+        classe.setCorso(CorsoDTO.toEntity(dto.corso()));
+        classe.setDocente(UtenteDTO.toEntity(dto.docente()));
+        return classe;
+    }
+
 }

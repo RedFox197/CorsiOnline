@@ -26,4 +26,19 @@ public record EsameDTO(
         );
     }
 
+    public static Esame toEntity(EsameDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        Esame esame = new Esame();
+        esame.setId(dto.id());
+        esame.setTipo(dto.tipo());
+        esame.setDescrizione(dto.descrizione());
+        esame.setPunteggio(dto.punteggio());
+        esame.setData(dto.data());
+        esame.setClasse(ClasseDTO.toEntity(dto.classe()));
+        esame.setStudente(UtenteDTO.toEntity(dto.studente()));
+        return esame;
+    }
+
 }
