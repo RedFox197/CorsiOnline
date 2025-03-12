@@ -27,11 +27,11 @@ public class Lezione {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
+    LocalDateTime data;
+    
+    private List<String> materiali;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private Classe classe;
-
-    LocalDateTime data;
-
-    private List<String> materiali;
 }

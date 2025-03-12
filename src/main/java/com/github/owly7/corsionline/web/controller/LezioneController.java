@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.owly7.corsionline.database.entity.Lezione;
 import com.github.owly7.corsionline.database.service.LezioneService;
 import com.github.owly7.corsionline.web.dto.LezioneDTO;
 
@@ -36,25 +35,15 @@ public class LezioneController {
         return lezioneService.findById(id);
     }
 
-    /*@GetMapping("/{id}/materiali")
-    public List<MaterialeDTO> getMateriali(@PathVariable Long id) {
-        return materialeService.findByLezioneId(id);
-    }*/
-
-    /*@PutMapping("/{id}/materiali")
-    public void addMateriali(@PathVariable Long id, @RequestBody List<MaterialeDTO> materiali) {
-        lezioneService.addMateriali(id, materiali);
-    }*/
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void save(@RequestBody Lezione entity) {
-        lezioneService.save(entity);
+    public void save(@RequestBody LezioneDTO entity) {
+        lezioneService.save(LezioneDTO.toEntity(entity));
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody Lezione entity) {
-        lezioneService.update(id, entity);
+    public void update(@PathVariable Long id, @RequestBody LezioneDTO entity) {
+        lezioneService.update(id, LezioneDTO.toEntity(entity));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -28,20 +28,6 @@ public class LezioneService {
         lezioneRepo.save(lezione);
     }
 
-    /*public void addMateriali(Long id, List<MaterialeDTO> materialiIn) {
-        Lezione lezione = lezioneRepo.findByIdWithMateriali(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Lezione " + id + " non trovata! Impossibile Aggiornare"));
-        
-        List<Materiale> materiali = lezione.getMateriali();
-        if (materiali != null) {
-            materiali.addAll(materialiIn.stream().map(MaterialeDTO::toEntity).toList());
-        } else {
-            materiali = materialiIn.stream().map(MaterialeDTO::toEntity).toList();
-        }
-
-        lezioneRepo.save(lezione);
-    }*/
-
     public List<LezioneDTO> findAll() {
         return lezioneRepo.findAll().stream().map(LezioneDTO::fromEntity).toList();
     }
