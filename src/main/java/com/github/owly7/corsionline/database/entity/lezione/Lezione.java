@@ -1,5 +1,6 @@
 package com.github.owly7.corsionline.database.entity.lezione;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.github.owly7.corsionline.database.entity.Classe;
@@ -32,6 +33,8 @@ public class Lezione {
 
     @ManyToOne
     private Classe classe;
+
+    LocalDateTime data;
 
     @ManyToMany
     private List<Materiale> materiali;

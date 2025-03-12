@@ -68,11 +68,6 @@ public class ClasseController {
         classeService.addStudenti(id, studenti);
     }
 
-    @GetMapping("/{id}/esami")
-    public List<EsameDTO> getEsami(@PathVariable Long id) {
-        return esameService.findByClasseId(id);
-    }
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void save(@RequestBody Classe entity) {

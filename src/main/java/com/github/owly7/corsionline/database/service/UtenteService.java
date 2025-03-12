@@ -13,6 +13,7 @@ import com.github.owly7.corsionline.database.repository.ClasseRepo;
 import com.github.owly7.corsionline.database.repository.UtenteRepo;
 import com.github.owly7.corsionline.exception.ResourceNotFoundException;
 import com.github.owly7.corsionline.web.dto.UtenteDTO;
+import com.github.owly7.corsionline.web.dto.UtenteSaveWithClassiRequest;
 
 import jakarta.transaction.Transactional;
 
@@ -27,6 +28,12 @@ public class UtenteService {
 
     public void save(Utente entity) {
         utenteRepo.save(entity);
+    }
+
+    @Transactional
+    public void saveWithClassi(UtenteSaveWithClassiRequest dto) {
+        Utente utente = utenteRepo.save(UtenteSaveWithClassiRequest.toEntity(dto));
+        updateClassi(utente.getId(), dto.classiIds(), false);
     }
 
     public void update(Long id, Utente utente) {

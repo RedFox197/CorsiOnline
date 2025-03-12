@@ -23,6 +23,7 @@ import com.github.owly7.corsionline.database.service.UtenteService;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
 import com.github.owly7.corsionline.web.dto.EsameDTO;
 import com.github.owly7.corsionline.web.dto.UtenteDTO;
+import com.github.owly7.corsionline.web.dto.UtenteSaveWithClassiRequest;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController
@@ -72,8 +73,8 @@ public class UtenteController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void save(@RequestBody Utente entity) {
-        utenteService.save(entity);
+    public void save(@RequestBody UtenteSaveWithClassiRequest entity) {
+        utenteService.saveWithClassi(entity);
     }
 
     @PutMapping("/{id}")
