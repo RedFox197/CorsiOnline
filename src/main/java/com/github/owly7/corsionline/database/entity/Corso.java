@@ -6,13 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
@@ -27,7 +25,7 @@ public class Corso {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
-    //mettere forse il cascade remove
+    //mettere forse il cascade remove --- deciso di no
     @OneToMany(mappedBy = "corso")
     private List<Classe> classi;
 }

@@ -8,16 +8,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
@@ -32,9 +31,11 @@ public class Classe {
     @Column(nullable = false)
     private LocalDate dataInizio;
 
+    @Column(nullable = false)
     private LocalDate dataFine;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Corso corso;
 
     @ManyToOne
@@ -46,6 +47,7 @@ public class Classe {
     @ManyToMany
     private List<Utente> studenti;
 
+    //ignoro
     @OneToMany(mappedBy = "classe")
     private List<Esame> esami;
 }

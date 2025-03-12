@@ -44,7 +44,6 @@ public class Utente {
 
     public enum Ruolo {
         STUDENTE,
-        DOCENTE,
-        AMMINISTRATORE
+        DOCENTE
     }
 }
