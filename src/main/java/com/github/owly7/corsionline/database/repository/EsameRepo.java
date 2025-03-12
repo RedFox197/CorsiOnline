@@ -15,4 +15,10 @@ public interface EsameRepo extends JpaRepository<Esame, Long> {
 
     @Query("SELECT e FROM Esame e WHERE e.classe.id = :id")
     List<Esame> findByClasseId(@Param("id") Long id);
+
+    @Query("SELECT e FROM Esame e WHERE e.studente.nome = :nome")
+    List<Esame> findByUtenteNome(@Param("nome") String nome);
+
+    @Query("SELECT e FROM Esame e WHERE e.studente.nome LIKE %:nome%")
+    List<Esame> findByUtenteNomeLike(@Param("nome") String nome);
 }

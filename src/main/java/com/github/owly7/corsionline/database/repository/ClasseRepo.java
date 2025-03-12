@@ -13,6 +13,10 @@ import com.github.owly7.corsionline.database.entity.Classe;
 
 @Repository
 public interface ClasseRepo extends JpaRepository<Classe, Long> {
+    List<Classe> findByNome(String nome);
+
+    List<Classe> findByNomeContaining(String nome);
+
     @Query("SELECT c FROM Classe c WHERE c.corso.id = :id")
     List<Classe> findByCorsoId(@Param("id") Long id);
 
@@ -21,6 +25,9 @@ public interface ClasseRepo extends JpaRepository<Classe, Long> {
 
     @Query("SELECT c FROM Classe c LEFT JOIN FETCH c.studenti WHERE c.id = :id")
     Optional<Classe> findByIdWithStudenti(@Param("id") Long id);
+
+    @Query("SELECT c FROM Classe c LEFT JOIN FETCH c.lezioni LEFT JOIN FETCH c.studenti LEFT JOIN FETCH c.esami WHERE c.id = :id")
+    Optional<Classe> findByIdWithAll(@Param("id") Long id);
 
     @Modifying
     @Query("UPDATE Classe c SET c.corso.id = :corsoId WHERE c.id = :classeId")
