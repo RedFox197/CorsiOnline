@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.owly7.corsionline.database.entity.Lezione;
 import com.github.owly7.corsionline.database.service.LezioneService;
-import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
+import com.github.owly7.corsionline.web.dto.LezioneDTO;
 
 @CrossOrigin("http://localhost:5173/")
 @RestController

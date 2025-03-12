@@ -1,15 +1,16 @@
-package com.github.owly7.corsionline.web.dto.lezione;
+package com.github.owly7.corsionline.web.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.github.owly7.corsionline.database.entity.Lezione;
-import com.github.owly7.corsionline.web.dto.ClasseDTO;
 
 public record LezioneDTO(
     Long id,
     String titolo,
     String descrizione,
     LocalDateTime data,
+    List<String> materiali,
     ClasseDTO classe
 ) {
     
@@ -19,6 +20,7 @@ public record LezioneDTO(
             lezione.getTitolo(),
             lezione.getDescrizione(),
             lezione.getData(),
+            lezione.getMateriali(),
             ClasseDTO.fromEntity(lezione.getClasse())
         );
     }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.github.owly7.corsionline.database.entity.Lezione;
 import com.github.owly7.corsionline.database.repository.LezioneRepo;
 import com.github.owly7.corsionline.exception.ResourceNotFoundException;
-import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
+import com.github.owly7.corsionline.web.dto.LezioneDTO;
 
 @Repository
 public class LezioneService {

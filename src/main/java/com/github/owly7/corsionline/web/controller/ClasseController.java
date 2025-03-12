@@ -12,8 +12,8 @@ import com.github.owly7.corsionline.database.service.ClasseService;
 import com.github.owly7.corsionline.database.service.LezioneService;
 import com.github.owly7.corsionline.database.service.UtenteService;
 import com.github.owly7.corsionline.web.dto.ClasseDTO;
+import com.github.owly7.corsionline.web.dto.LezioneDTO;
 import com.github.owly7.corsionline.web.dto.UtenteDTO;
-import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
