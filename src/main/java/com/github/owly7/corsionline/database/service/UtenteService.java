@@ -54,7 +54,7 @@ public class UtenteService {
             if (optclasse.isPresent()) {
                 Classe classe = optclasse.get();
                 if (delete)
-                    //todo forse va bene buttarci solo remvoe utente
+                    //todo forse va bene buttarci solo remvoe utente perché lombok implementa equals e hashcode
                     classe.getStudenti().removeIf(t -> t.getId().equals(id));
                 else
                     classe.getStudenti().add(utente);
