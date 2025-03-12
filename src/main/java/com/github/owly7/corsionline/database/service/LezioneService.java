@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.github.owly7.corsionline.database.entity.lezione.Lezione;
-import com.github.owly7.corsionline.database.entity.lezione.Materiale;
 import com.github.owly7.corsionline.database.repository.LezioneRepo;
 import com.github.owly7.corsionline.exception.ResourceNotFoundException;
 import com.github.owly7.corsionline.web.dto.lezione.LezioneDTO;
-import com.github.owly7.corsionline.web.dto.lezione.MaterialeDTO;
 
 @Repository
 public class LezioneService {
@@ -30,7 +28,7 @@ public class LezioneService {
         lezioneRepo.save(lezione);
     }
 
-    public void addMateriali(Long id, List<MaterialeDTO> materialiIn) {
+    /*public void addMateriali(Long id, List<MaterialeDTO> materialiIn) {
         Lezione lezione = lezioneRepo.findByIdWithMateriali(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Lezione " + id + " non trovata! Impossibile Aggiornare"));
         
@@ -42,7 +40,7 @@ public class LezioneService {
         }
 
         lezioneRepo.save(lezione);
-    }
+    }*/
 
     public List<LezioneDTO> findAll() {
         return lezioneRepo.findAll().stream().map(LezioneDTO::fromEntity).toList();
