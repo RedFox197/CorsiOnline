@@ -73,6 +73,7 @@ public class UtenteService {
     }
 
     public List<Utente> findByRuolo(String ruolo) {
+        //todo ruolo eccezione non gestione
         return utenteRepo.findByRuolo(Ruolo.valueOf(ruolo));
     }
 

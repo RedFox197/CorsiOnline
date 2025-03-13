@@ -25,7 +25,6 @@ public class Corso {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
-    //mettere forse il cascade remove --- deciso di no
     @OneToMany(mappedBy = "corso")
     private List<Classe> classi;
 }
