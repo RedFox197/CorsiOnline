@@ -29,8 +29,6 @@ public class Lezione {
     @Column(nullable = false)
     LocalDateTime data;
     
-    private String materiale;
-
     @ManyToOne
     @JoinColumn(nullable = false)
     private Classe classe;

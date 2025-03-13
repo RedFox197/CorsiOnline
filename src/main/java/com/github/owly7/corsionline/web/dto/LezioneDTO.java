@@ -9,7 +9,6 @@ public record LezioneDTO(
     String titolo,
     String descrizione,
     LocalDateTime data,
-    String materiali,
     ClasseDTO classe
 ) {
     
@@ -19,7 +18,6 @@ public record LezioneDTO(
             lezione.getTitolo(),
             lezione.getDescrizione(),
             lezione.getData(),
-            lezione.getMateriale(),
             ClasseDTO.fromEntity(lezione.getClasse())
         );
     }
@@ -34,7 +32,6 @@ public record LezioneDTO(
         lezione.setTitolo(dto.titolo());
         lezione.setDescrizione(dto.descrizione());
         lezione.setData(dto.data());
-        lezione.setMateriale(dto.materiali());
         lezione.setClasse(ClasseDTO.toEntity(dto.classe()));
         return lezione;
     }
