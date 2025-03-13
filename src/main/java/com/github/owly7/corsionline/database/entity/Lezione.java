@@ -1,7 +1,6 @@
 package com.github.owly7.corsionline.database.entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,9 +26,10 @@ public class Lezione {
     @Column(columnDefinition = "TEXT")
     private String descrizione;
 
+    @Column(nullable = false)
     LocalDateTime data;
     
-    private List<String> materiali;
+    private String materiale;
 
     @ManyToOne
     @JoinColumn(nullable = false)
