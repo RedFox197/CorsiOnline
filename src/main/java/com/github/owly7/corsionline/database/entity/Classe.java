@@ -47,7 +47,6 @@ public class Classe {
     @ManyToMany
     private List<Utente> studenti;
 
-    //ignoro
-    @OneToMany(mappedBy = "classe")
+    @OneToMany(mappedBy = "classe", cascade = CascadeType.REMOVE)
     private List<Esame> esami;
 }
