@@ -11,6 +11,10 @@ import com.github.owly7.corsionline.database.entity.Lezione;
 
 @Repository
 public interface LezioneRepo extends JpaRepository<Lezione, Long> {
+    List<Lezione> findByTitolo(String titolo);
+
+    List<Lezione> findByDescrizione(String descrizione);
+
     @Query("SELECT l FROM Lezione l WHERE l.classe.id = :id")
     List<Lezione> findByClasseId(@Param("id") Long id);
 }
